@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import '../styles/modal.css'
 import { handleFetchData } from '../utils/functions'
 import { ReposTable } from './ReposTable'
+import { Spin } from './Spin'
   
 export function ModalContent({ user }) {
     const [repos, setRepos] = useState([])
@@ -30,7 +31,7 @@ export function ModalContent({ user }) {
 
     return (
         <div className="modal-content">
-				{loading ? <div className='spin' /> : 
+				{loading ? <Spin /> : 
             (
 				<>
 					<div>
