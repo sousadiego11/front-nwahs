@@ -1,6 +1,8 @@
 .actions {
     display: flex;
-    justify-content: right;
+	 justify-content: center;
+
+	 margin: 12px 30%;
 }
 
 .actions button {
@@ -19,4 +21,11 @@
 
 .actions button:hover{
 	background-color: rgb(64, 61, 103);
+}
+
+@media only screen and (max-width: 600px) {
+	.card-wrapper {
+		height: 90vh;
+		overflow: auto;
+	}
 }

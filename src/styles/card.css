@@ -1,33 +1,43 @@
+
 .card {
     font-family: 'Lato', sans-serif;
     display: flex;
-
-    width: 15%;
+	 
     height: 60px;
-
+	 
+	 
+	 width: 15%;
     margin: 12px auto 0px;
 
     cursor: pointer;
 
     background-color: rgb(238, 238, 238);
     color: rgb(41, 40, 50);
-
+	 
     border-radius: 6px;
     border: solid 2px rgb(74, 99, 154);
 
     transition: 0.2s ease-in-out;
+
+	 box-sizing: border-box;
 }
 
 .card:hover {
-    background-color: rgb(209, 208, 225);
+	background-color: rgb(209, 208, 225);
 }
-
+	
 .card img {
     border-radius: 50%;
     margin: 3px;
 }
 
 .card span {
-    display: table;
-    margin: 8px 0 0 12px;
+	display: table;
+	margin: 8px 0 0 12px;
+}
+
+@media only screen and (max-width: 600px) {
+	.card {
+		width: 80%;
+	}
 }

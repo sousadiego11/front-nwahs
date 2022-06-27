@@ -10,7 +10,6 @@ function App() {
     const response = await handleFetchData(url)
     setData(response)
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
