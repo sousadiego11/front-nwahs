@@ -4,17 +4,12 @@ import { handleFetchData } from "./utils/functions";
 import './styles/app.css'
 
 function App() {
-  const [users, setUsers] = useState([])
-  const [nextUrl, setNextUrl] = useState('')
-  const [previousUser, setPreviousUser] = useState()
+  const [data, setData] = useState()
 
   const handleSetUsers = useCallback(async(url) => {
-    const data = await handleFetchData(url)
+    const response = await handleFetchData(url)
+    setData(response)
 
-    if (users.length > 0) setPreviousUser(users[users.length - 1])
-
-    setUsers(data.users)
-    setNextUrl(data.nextUrl)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -24,10 +19,9 @@ function App() {
 
   return (
     <div className="app">
-      <CardWrapper users={users} /> 
+      <CardWrapper users={data?.users ?? []} /> 
       <div className="actions">
-        <button onClick={() => handleSetUsers(nextUrl)}>Previous</button>
-        <button onClick={() => handleSetUsers(`/users?since=${previousUser?.id}`)}>Next</button>
+        <button onClick={() => handleSetUsers(data?.nextUrl)}>Next</button>
       </div>
     </div>
   );
