@@ -1,4 +1,22 @@
 .actions {
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
+}
+
+.actions button {
+	border: none;
+	border-radius: 6px;
+	width: 60px;
+	height: 26px;
+	font-family: 'Lato', sans-serif;
+	background-color: rgb(74, 99, 154);
+	color: rgb(238, 238, 238);
+	
+	transition: 0.3s ease-in-out;
+	cursor: pointer;
+}
+
+
+.actions button:hover{
+	background-color: rgb(64, 61, 103);
 }

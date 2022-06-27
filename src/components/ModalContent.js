@@ -6,16 +6,22 @@ import { ReposTable } from './ReposTable'
 export function ModalContent({ user }) {
     const [repos, setRepos] = useState([])
     const [currentUser, setCurrentUser] = useState({})
+    const [loading, setLoading] = useState(false)
     const { id, login, html_url, created_at } = currentUser
     const loginDate = new Date(created_at)
 
 
   const handleSetRepos = useCallback(async() => {
-    const dataRepos = await handleFetchData(`/users/${user.login}/repos`)
-	 const dataUser = await handleFetchData(`/users/${user.login}/details`)
-
-    setRepos(dataRepos)
-    setCurrentUser(dataUser)
+	try {
+		setLoading(true)
+		const dataRepos = await handleFetchData(`/users/${user.login}/repos`)
+		const dataUser = await handleFetchData(`/users/${user.login}/details`)
+  
+		setRepos(dataRepos)
+		setCurrentUser(dataUser)
+	} finally {
+		setLoading(false)
+	}
   }, [user.login])
 
   useEffect(() => {
@@ -30,7 +36,9 @@ export function ModalContent({ user }) {
                 <span><b>Profile URL: </b><a href={html_url}>{html_url}</a></span>
                 <span><b>Login creation date: </b>{loginDate.toLocaleDateString('pt-BR')}</span>
             </div>
-            <ReposTable repos={repos} />
+				{
+					loading ? <div className='spin' /> : <ReposTable repos={repos} /> 
+				}
         </div>
     )
 }
