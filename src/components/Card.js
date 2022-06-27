@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import Modal from 'react-modal';
-import '../styles/card.css'
+import '../styles/card.css';
 import { customStyles } from '../utils/customModalStyle';
 import { ModalContent } from './ModalContent';
 

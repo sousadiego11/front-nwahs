@@ -15,7 +15,8 @@ function App() {
 
     setUsers(data.users)
     setNextUrl(data.nextUrl)
-  }, [users])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     handleSetUsers()
