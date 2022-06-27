@@ -30,14 +30,17 @@ export function ModalContent({ user }) {
 
     return (
         <div className="modal-content">
-            <div>
-                <span><b>Id: </b>{id}</span>
-                <span><b>Login: </b>{login}</span>
-                <span><b>Profile URL: </b><a href={html_url}>{html_url}</a></span>
-                <span><b>Login creation date: </b>{loginDate.toLocaleDateString('pt-BR')}</span>
-            </div>
-				{
-					loading ? <div className='spin' /> : <ReposTable repos={repos} /> 
+				{loading ? <div className='spin' /> : 
+            (
+				<>
+					<div>
+						<span><b>Id: </b>{id}</span>
+						<span><b>Login: </b>{login}</span>
+						<span><b>Profile URL: </b><a href={html_url}>{html_url}</a></span>
+						<span><b>Login creation date: </b>{loginDate.toLocaleDateString('pt-BR')}</span>
+					</div>
+					<ReposTable repos={repos} />
+				</>)
 				}
         </div>
     )
