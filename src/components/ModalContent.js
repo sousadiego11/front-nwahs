@@ -1,4 +1,6 @@
+import { useCallback, useEffect, useState } from 'react'
 import '../styles/modal.css'
+import { handleFetchData } from '../utils/functions'
 
 const bla = {
     login: "octocat",
@@ -17,8 +19,20 @@ const bla2 = [
 
   
 export function ModalContent({ user }) {
+    const [repos, setRepos] = useState(bla2)
     const { id, login, html_url, created_at } = bla
     const loginDate = new Date(created_at)
+
+
+  const handleSetRepos = useCallback(async() => {
+    const data = await handleFetchData(`/users/${login}/repos`)
+
+    setRepos(data)
+  }, [login])
+
+  useEffect(() => {
+    handleSetRepos()
+  }, [handleSetRepos])
 
     return (
         <div className="modal-content">
@@ -35,7 +49,7 @@ export function ModalContent({ user }) {
                     <th>URL</th>
                 </tr>
                 {
-                    bla2.map(({id, name, html_url}) => (
+                    repos.map(({id, name, html_url}) => (
                         <tr>
                             <td>{id}</td>
                             <td>{name}</td>

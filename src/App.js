@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { CardWrapper } from "./components/CardWrapper";
-import { getUsersList } from "./utils/functions";
+import { handleFetchData } from "./utils/functions";
 import './styles/app.css'
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
   const [previousUser, setPreviousUser] = useState()
 
   const handleSetUsers = useCallback(async(url) => {
-    const data = await getUsersList(url)
+    const data = await handleFetchData(url)
 
     if (users.length > 0) setPreviousUser(users[users.length - 1])
 
@@ -18,7 +18,7 @@ function App() {
   }, [users])
 
   useEffect(() => {
-    // handleSetUsers()
+    handleSetUsers()
   }, [handleSetUsers])
 
   return (
@@ -26,7 +26,7 @@ function App() {
       <CardWrapper users={users} /> 
       <div className="actions">
         <button onClick={() => handleSetUsers(nextUrl)}>Previous</button>
-        <button onClick={() => handleSetUsers(`/users?since=${previousUser.id}`)}>Next</button>
+        <button onClick={() => handleSetUsers(`/users?since=${previousUser?.id}`)}>Next</button>
       </div>
     </div>
   );
